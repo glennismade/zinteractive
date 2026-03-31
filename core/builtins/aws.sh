@@ -9,7 +9,7 @@ zi_loadenv() {
   local prefix="$1"
   if [ -z "$prefix" ]; then
     echo "[zinteractive] Usage: zi_loadenv <PREFIX>"
-    echo "[zinteractive] Loads PREFIX_* vars from $ZI_ENV_FILE and exports without prefix"
+    echo "[zinteractive] Loads PREFIX_* vars from $ZI_ENV_FILE and exports (keeps parent namespace)"
     return 1
   fi
 
@@ -37,8 +37,14 @@ zi_loadenv() {
 
     case "$key" in
       "${prefix}_"*)
-        local export_key="${key#${prefix}_}"
-        export "$export_key=$value"
+        local suffix="${key#${prefix}_}"
+        # If prefix has a parent (e.g. AWS_PROD → AWS), re-add it
+        local parent="${prefix%_*}"
+        if [ "$parent" != "$prefix" ]; then
+          export "${parent}_${suffix}=$value"
+        else
+          export "$suffix=$value"
+        fi
         found=$((found + 1))
         ;;
     esac
