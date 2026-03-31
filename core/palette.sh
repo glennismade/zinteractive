@@ -73,12 +73,12 @@ $(printf "${c}%-11s${r} ${n}%-24s${r} ${d}%s${r}" "[Terminal]" "zi_terminal" "Br
   [ "$alias_count" -gt 0 ] 2>/dev/null && filtered_items="${filtered_items}
 $(printf "${c}%-11s${r} ${n}%-24s${r} ${d}%s${r}" "[Alias]" "zi_aliases" "Browse ${alias_count} aliases...")"
 
-  for group in General Workflow Git Nav Picker Brew "AWS/Infra" Dev Cheat Terminal Alias Custom; do
+  for group in General Workflow Git Nav Picker Brew Tmux Projects "AWS/Infra" Dev Cheat Terminal Alias Custom; do
     printf '%s\n' "$filtered_items" | grep "\[${group}" | sort -t']' -k2
   done
 
   # Any categories not in the predefined order
-  known_pattern="General\|Workflow\|Git\|Nav\|Picker\|Brew\|Alias\|AWS/Infra\|Dev\|Cheat\|Terminal\|Custom"
+  known_pattern="General\|Workflow\|Git\|Nav\|Picker\|Brew\|Tmux\|Projects\|Alias\|AWS/Infra\|Dev\|Cheat\|Terminal\|Custom"
   printf '%s\n' "$filtered_items" | grep -v "\[${known_pattern}" | grep -v '^$' | sort -t']' -k2
 }
 

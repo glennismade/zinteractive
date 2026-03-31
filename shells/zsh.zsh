@@ -50,10 +50,26 @@ _zi_branch_pick_widget() {
 }
 zle -N _zi_branch_pick_widget
 
+# Tmux widget — Ctrl+T
+_zi_tmux_widget() {
+  zi_tmux
+  zle reset-prompt
+}
+zle -N _zi_tmux_widget
+
+# Projects widget — Ctrl+P
+_zi_projects_widget() {
+  zi_projects
+  zle reset-prompt
+}
+zle -N _zi_projects_widget
+
 # Bind keys (respecting config)
 [ "${ZI_BIND_PALETTE:-1}" = "1" ] && bindkey '^\' _zi_palette_widget
 [ "${ZI_BIND_FILEPICK:-1}" = "1" ] && bindkey '^F' _zi_file_pick_widget
 [ "${ZI_BIND_BRANCHPICK:-1}" = "1" ] && bindkey '^B' _zi_branch_pick_widget
+[ "${ZI_BIND_TMUX:-1}" = "1" ] && bindkey '^T' _zi_tmux_widget
+[ "${ZI_BIND_PROJECTS:-1}" = "1" ] && bindkey '^P' _zi_projects_widget
 
 # Non-widget command for direct invocation
 zinteractive() {
