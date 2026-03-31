@@ -31,12 +31,14 @@ source "$ZI_HOME/core/palette.sh"
 source "$ZI_HOME/core/cheats.sh"
 source "$ZI_HOME/core/setup.sh"
 
-_zi_builtins="${ZI_BUILTINS:-git,nav,aws,pickers,brew}"
+_zi_builtins="${ZI_BUILTINS:-git,nav,aws,pickers,brew,tmux,projects}"
 case "$_zi_builtins" in *git*)     source "$ZI_HOME/core/builtins/git.sh" ;; esac
 case "$_zi_builtins" in *nav*)     source "$ZI_HOME/core/builtins/nav.sh" ;; esac
 case "$_zi_builtins" in *aws*)     source "$ZI_HOME/core/builtins/aws.sh" ;; esac
 case "$_zi_builtins" in *pickers*) source "$ZI_HOME/core/builtins/pickers.sh" ;; esac
 case "$_zi_builtins" in *brew*)    source "$ZI_HOME/core/builtins/brew.sh" ;; esac
+case "$_zi_builtins" in *tmux*)     source "$ZI_HOME/core/builtins/tmux.sh" ;; esac
+case "$_zi_builtins" in *projects*) source "$ZI_HOME/core/builtins/projects.sh" ;; esac
 
 _zi_terminal="${ZI_TERMINAL:-auto}"
 if [ "$_zi_terminal" = "auto" ]; then

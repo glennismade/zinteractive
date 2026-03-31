@@ -41,7 +41,7 @@ _zi_setup() {
 
   # Step 4: Builtin groups
   local builtins_choice
-  builtins_choice=$(printf "git\nnav\naws\npickers\nbrew" | fzf --multi --header="Select builtin groups (TAB to toggle):" --height=12 --no-sort)
+  builtins_choice=$(printf "git\nnav\naws\npickers\nbrew\ntmux\nprojects" | fzf --multi --header="Select builtin groups (TAB to toggle):" --height=12 --no-sort)
   if [ -z "$builtins_choice" ]; then
     builtins_choice="git,nav,aws,pickers"
   else
